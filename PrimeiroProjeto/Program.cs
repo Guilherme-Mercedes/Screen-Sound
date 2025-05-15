@@ -53,6 +53,7 @@ namespace PrimeiroProjeto
                         AvaliarBanda();
                         break;
                     case 4:
+                        ExibirMediaBanda();
                         break;
                     case 0:
                         Environment.Exit(0);
@@ -63,7 +64,6 @@ namespace PrimeiroProjeto
             }
 
             //Registrar uma banda, o nome da banda
-            //futuramente posso incluir um while
             //Deixar que o usuario no mesmo menu possa registrar mais de uma banda 
             void RegistrarBanda()
             {
@@ -97,6 +97,7 @@ namespace PrimeiroProjeto
                     Console.Clear();
                     break;
                 }
+                ExibirOpcoesDoMenu();
             }
 
             void MostrarBandas()
@@ -114,10 +115,6 @@ namespace PrimeiroProjeto
                 {
                     GerarLayoutTitulo("Bandas registradas:\n");
 
-                    /*for (int i = 0; i < ListaDeBandas.Count; i++)
-                    {
-                        Console.WriteLine("Banda: {0}", ListaDeBandas[i]);
-                    }*/
                     foreach (string banda in listaDeBandas.Keys)
                     {
                         Console.WriteLine("Banda: {0}", banda);
@@ -181,10 +178,49 @@ namespace PrimeiroProjeto
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Nenhuma banda registrada para avaliacao \nretornando ao menu...");
+                    GerarLayoutTitulo("Nenhuma banda registrada para avaliacao \nretornando ao menu...");
                     Thread.Sleep(2500);
                     ExibirOpcoesDoMenu();
                 }
+            }
+
+            void ExibirMediaBanda() 
+            {
+                Console.Clear();
+                //mostrar a media de todas as bandas registradas
+                if (listaDeBandas.Count != 0)
+                {
+                    //reaproveitei as linhas de codigo da funcao MostrarBandas
+                    GerarLayoutTitulo("Nota media das Bandas :\n");
+
+                    foreach (string banda in listaDeBandas.Keys)
+                    {
+                        //verificar se a banda possui notas registradas
+                        if (listaDeBandas[banda].Count == 0)
+                        {
+                            Console.WriteLine("A banda {0} ainda nao possui notas registradas", banda);
+                            continue;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Banda: {0} Nota: {1}", banda, listaDeBandas[banda].Average());
+                        }
+                    }
+                    Console.WriteLine("\n Digite qualquer tecla para sair!");
+                    Console.ReadKey();
+                    Console.Clear();
+                    ExibirOpcoesDoMenu();
+
+
+
+                }
+                else 
+                {
+                    GerarLayoutTitulo("Nenhuma banda registrada!");
+                    Thread.Sleep(2500);
+                    ExibirOpcoesDoMenu();
+                }
+
             }
 
             //Uma funcao para gerar um layout de "-----" nas palavras titulos das opcoes.
@@ -195,6 +231,8 @@ namespace PrimeiroProjeto
                 Console.WriteLine("{0}\n{1}\n{0}\n", linha, titulo);
 
             }
+
+            
         }
 
 
