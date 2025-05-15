@@ -120,7 +120,6 @@ namespace PrimeiroProjeto
                     GerarLayoutTitulo("Nenhuma banda registrada! \nretornando ao menu...");
                     Thread.Sleep(2500);
                     Console.Clear();
-                    ExibirOpcoesDoMenu();
                 }
                 else
                 {
@@ -133,7 +132,6 @@ namespace PrimeiroProjeto
                     Console.WriteLine("\n Digite qualquer tecla para sair!");
                     Console.ReadKey();
                     Console.Clear();
-                    ExibirOpcoesDoMenu();
 
                 }
 
@@ -154,8 +152,8 @@ namespace PrimeiroProjeto
                     {
                         Console.WriteLine("Banda: {0}", banda);
                     }
-
-                    GerarLayoutTitulo("\nAvaliar banda");
+                    Console.WriteLine("");//para dar um espacamento, o \n acaba atrapalhando a funcao GerarLayoutTitulo
+                    GerarLayoutTitulo("Avaliar banda");
                     Console.Write("Digite o nome da banda:");
                     nomeBanda = Console.ReadLine()!;
                     //Verifica se a banda digitada existe
@@ -167,7 +165,7 @@ namespace PrimeiroProjeto
                         listaDeBandas[nomeBanda].Add(nota);
                         Console.WriteLine("A nota {0} da banda {1} foi registrada com sucesso", nota, nomeBanda);
                         Thread.Sleep(2000);
-                        ExibirOpcoesDoMenu();
+
 
                     }
                     else
@@ -179,10 +177,6 @@ namespace PrimeiroProjeto
                         {
                             AvaliarBanda();
                         }
-                        else
-                        {
-                            ExibirOpcoesDoMenu();
-                        }
 
                     }
                 }
@@ -191,7 +185,6 @@ namespace PrimeiroProjeto
                     Console.Clear();
                     GerarLayoutTitulo("Nenhuma banda registrada para avaliacao \nretornando ao menu...");
                     Thread.Sleep(2500);
-                    ExibirOpcoesDoMenu();
                 }
             }
 
@@ -220,16 +213,11 @@ namespace PrimeiroProjeto
                     Console.WriteLine("\n Digite qualquer tecla para sair!");
                     Console.ReadKey();
                     Console.Clear();
-                    ExibirOpcoesDoMenu();
-
-
-
                 }
                 else
                 {
                     GerarLayoutTitulo("Nenhuma banda registrada!");
                     Thread.Sleep(2500);
-                    ExibirOpcoesDoMenu();
                 }
 
             }
