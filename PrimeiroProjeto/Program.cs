@@ -11,7 +11,6 @@ namespace PrimeiroProjeto
     {
         static void Main(string[] args)
         {
-            //List<string> ListaDeBandas = new List<string>();
             //o "StringComparer.OrdinalIgnoreCase" Faz com que o dicionário ignore maiúsculas/minúsculas nas chaves evitando reutilizacoes de ToLower
             Dictionary<string, List<int>> listaDeBandas = new Dictionary<string, List<int>>(StringComparer.OrdinalIgnoreCase);
             ExibirOpcoesDoMenu();
@@ -32,35 +31,47 @@ namespace PrimeiroProjeto
 
             void ExibirOpcoesDoMenu()
             {
-                ExibirLogo();
-                int opcao;
-                Console.WriteLine("\nDigite 1 para registrar uma banda");
-                Console.WriteLine("Digite 2 para mostrar todas as bandas");
-                Console.WriteLine("Digite 3 para avaliar uma banda");
-                Console.WriteLine("Digite 4 para exibir a média de uma banda");
-                Console.WriteLine("Digite 0 para sair");
-                opcao = int.Parse(Console.ReadLine()!);
-
-                switch (opcao)
+                while (true)
                 {
-                    case 1:
-                        RegistrarBanda();
-                        break;
-                    case 2:
-                        MostrarBandas();
-                        break;
-                    case 3:
-                        AvaliarBanda();
-                        break;
-                    case 4:
-                        ExibirMediaBanda();
-                        break;
-                    case 0:
-                        Environment.Exit(0);
-                        break;
+                    int opcao; ;
+                    ExibirLogo();
+                    Console.WriteLine("\n1 - para registrar uma banda");
+                    Console.WriteLine("2 - para mostrar todas as bandas");
+                    Console.WriteLine("3 - para avaliar uma banda");
+                    Console.WriteLine("4 - para exibir a média de uma banda");
+                    Console.WriteLine("0 - para sair");
+                    string a = Console.ReadLine();
+
+
+                    if (!int.TryParse(a, out opcao) || opcao < 0 || opcao > 4)
+                    {
+                        Console.WriteLine("\nOpcao invalida...");
+                        Console.WriteLine("Digite uma das opcoes acima!");
+                        Thread.Sleep(2000);
+                        continue;
+                    }
+
+                    switch (opcao)
+                    {
+                        case 1:
+                            RegistrarBanda();
+                            break;
+                        case 2:
+                            MostrarBandas();
+                            break;
+                        case 3:
+                            AvaliarBanda();
+                            break;
+                        case 4:
+                            ExibirMediaBanda();
+                            break;
+                        case 0:
+
+                            return;
+
+                    }
 
                 }
-
             }
 
             //Registrar uma banda, o nome da banda
@@ -97,7 +108,7 @@ namespace PrimeiroProjeto
                     Console.Clear();
                     break;
                 }
-                ExibirOpcoesDoMenu();
+                
             }
 
             void MostrarBandas()
@@ -144,7 +155,7 @@ namespace PrimeiroProjeto
                         Console.WriteLine("Banda: {0}", banda);
                     }
 
-                    GerarLayoutTitulo("Avaliar banda");
+                    GerarLayoutTitulo("\nAvaliar banda");
                     Console.Write("Digite o nome da banda:");
                     nomeBanda = Console.ReadLine()!;
                     //Verifica se a banda digitada existe
@@ -184,7 +195,7 @@ namespace PrimeiroProjeto
                 }
             }
 
-            void ExibirMediaBanda() 
+            void ExibirMediaBanda()
             {
                 Console.Clear();
                 //mostrar a media de todas as bandas registradas
@@ -214,7 +225,7 @@ namespace PrimeiroProjeto
 
 
                 }
-                else 
+                else
                 {
                     GerarLayoutTitulo("Nenhuma banda registrada!");
                     Thread.Sleep(2500);
@@ -232,7 +243,7 @@ namespace PrimeiroProjeto
 
             }
 
-            
+
         }
 
 
