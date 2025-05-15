@@ -199,7 +199,7 @@ namespace PrimeiroProjeto
 
                     foreach (string banda in listaDeBandas.Keys)
                     {
-                        //verificar se a banda possui notas registradas
+                        //verificar se a banda possui notas registradas-----------
                         if (listaDeBandas[banda].Count == 0)
                         {
                             Console.WriteLine("A banda {0} ainda nao possui notas registradas", banda);
