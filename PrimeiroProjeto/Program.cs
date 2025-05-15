@@ -16,7 +16,7 @@ namespace PrimeiroProjeto
             Dictionary<string, List<int>> listaDeBandas = new Dictionary<string, List<int>>(StringComparer.OrdinalIgnoreCase);
             ExibirOpcoesDoMenu();
 
-            
+
             void ExibirLogo()
             {
                 Console.Clear();
@@ -41,7 +41,7 @@ namespace PrimeiroProjeto
                 Console.WriteLine("Digite 0 para sair");
                 opcao = int.Parse(Console.ReadLine()!);
 
-                switch (opcao) 
+                switch (opcao)
                 {
                     case 1:
                         RegistrarBanda();
@@ -67,27 +67,27 @@ namespace PrimeiroProjeto
             //Deixar que o usuario no mesmo menu possa registrar mais de uma banda 
             void RegistrarBanda()
             {
-
                 string nomeBanda;
-                Console.Clear();
-                GerarLayoutTitulo("Registros de bandas");
-                Console.WriteLine("Digite o nome da banda:");
-                nomeBanda = Console.ReadLine();
-                //Adicionar um filtro para nao deixar a banda ser null e o registro duplicado
-                if (nomeBanda == null)
+
+                while (true)
                 {
-                    Console.WriteLine("\nO nome da banda nao pode estar em branco...");
-                    Thread.Sleep(2000);
-                    RegistrarBanda();
-                }
-                else if (listaDeBandas.ContainsKey(nomeBanda))
-                {
-                    Console.WriteLine("\nA banda {0} ja existe, tente novamente", nomeBanda);
-                    Thread.Sleep(2000);
-                    RegistrarBanda();
-                }
-                else
-                {
+                    Console.Clear();
+                    GerarLayoutTitulo("Registros de bandas");
+                    Console.Write("Digite o nome da banda: ");
+                    nomeBanda = Console.ReadLine();
+                    //filtro para nao deixar a banda ser null e o registro duplicado
+                    if (string.IsNullOrWhiteSpace(nomeBanda))
+                    {
+                        Console.WriteLine("\nO nome da banda nao pode estar em branco...");
+                        Thread.Sleep(2000);
+                        continue;
+                    }
+                    if (listaDeBandas.ContainsKey(nomeBanda))
+                    {
+                        Console.WriteLine("\nA banda {0} ja foi registrada, tente novamente", nomeBanda);
+                        Thread.Sleep(2000);
+                        continue;
+                    }
 
                     listaDeBandas.Add(nomeBanda, new List<int>());
                     Console.Clear();
@@ -95,11 +95,11 @@ namespace PrimeiroProjeto
                     Console.WriteLine("retornando ao menu...");
                     Thread.Sleep(2000);
                     Console.Clear();
-                    ExibirOpcoesDoMenu();
+                    break;
                 }
             }
 
-            void MostrarBandas() 
+            void MostrarBandas()
             {
                 Console.Clear();
 
@@ -131,7 +131,7 @@ namespace PrimeiroProjeto
 
             }
 
-            void AvaliarBanda() 
+            void AvaliarBanda()
             {
                 Console.Clear();
                 //verificar se existe banda registrada
@@ -188,7 +188,7 @@ namespace PrimeiroProjeto
             }
 
             //Uma funcao para gerar um layout de "-----" nas palavras titulos das opcoes.
-            void GerarLayoutTitulo(string titulo) 
+            void GerarLayoutTitulo(string titulo)
             {
                 //eu poderia usar o for, mas usei um constructor da classe string que facilita e deixa o codigo mais limpo
                 string linha = new string('-', titulo.Length);
