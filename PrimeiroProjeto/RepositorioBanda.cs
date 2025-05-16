@@ -9,8 +9,7 @@ namespace PrimeiroProjeto
 {
     internal class RepositorioBanda
     {
-        List<Banda> listaDeBandas = new List<Banda>();
-
+        public List<Banda> listaDeBandas = new List<Banda>();//Depois realizar o emcapsulamento, minha faculdade de Enghenharia de Software está servindo para algo
         public void RegistrarBanda()
         {
             string nomeBanda;

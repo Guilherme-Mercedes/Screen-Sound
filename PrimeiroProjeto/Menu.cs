@@ -9,9 +9,8 @@ namespace PrimeiroProjeto
 {
     internal class Menu
     {
-        public static void ExibirMenu() 
+        public static void ExibirMenu(RepositorioBanda repositorio, Avaliador avaliador)
         {
-            RepositorioBanda repositorio = new RepositorioBanda();
 
             while (true)
             {
@@ -42,10 +41,10 @@ namespace PrimeiroProjeto
                         repositorio.MostrarBandas();
                         break;
                     case 3:
-                        //AvaliarBanda();
+                        avaliador.AvaliarBanda();
                         break;
                     case 4:
-                        //ExibirMediaBanda();
+                        avaliador.ExibirMediaBanda();
                         break;
                     case 0:
 
